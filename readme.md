@@ -1,0 +1,3 @@
+# <img src="https://cloud.githubusercontent.com/assets/7833470/10899314/63829980-8188-11e5-8cdd-4ded5bcb6e36.png" height="60"> Rails Blog App
+
+**Objective:** Use Rails to build a full-stack blog application. You will be building this app over the course of three evenings. Your objective for the first evening is to set up the `users` resource of your blog, and implement authentication, validations, and error-handling.
