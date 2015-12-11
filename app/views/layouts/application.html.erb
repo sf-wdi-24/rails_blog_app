@@ -31,9 +31,12 @@
           <li><a href="/users">All Users</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="/signup">Sign Up</a></li>
-          <li><a href="/login">Log In</a></li>
-          <li><a href="/logout">Log Out</a></li>
+          <% if current_user %>
+            <li><a href="/logout">Log Out</a></li>
+          <% else %>
+            <li><a href="/signup">Sign Up</a></li>
+            <li><a href="/login">Log In</a></li>
+          <% end %>
         </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
