@@ -17,7 +17,7 @@ class UsersController < ApplicationController
       redirect_to user_path(@user)
     else
       flash[:error] = @user.errors.full_messages.join(", ")
-      redirect_to new_user_path
+      redirect_to signup_path
     end
   end
 
