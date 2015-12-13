@@ -3,8 +3,8 @@
 <p><strong>Email:</strong> <%= @user.email %></p>
 <p class="small text-muted">Joined <%= time_ago_in_words(@user.created_at) %> ago</p>
 
-<!-- only let current_user see edit/delete buttons -->
-<% if current_user == @user %>
+<!-- only let user who owns this account see edit/delete buttons -->
+<% if current_user && current_user == @user %>
   <hr>
   <p>
     <%= link_to "Edit Profile", edit_user_path(@user), class: "btn btn-default" %>
