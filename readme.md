@@ -23,8 +23,8 @@
 * Controller actions for each of your RESTful routes that implement CRUD for `users` (for now, you can let any user update or delete another user in the database).
 * A `User` model and corresponding database table with the minimum attributes `email` and `password_digest`.
 * Model validations on `User`:
-  * `email`: required, unique, validate format
-  * `password`: required, at least 6 characters
+  * `email`: presence, uniqueness, validates format
+  * `password`: presence, minimum 6 characters
 * Error-handling in the `UsersController` that redirects the user if they submit invalid form data and shows a flash message with the error.
 * The ability for users to sign up with a secure password and log back into your site. You will need the following routes for authentication in addition to the RESTful routes listed above:
   * `GET /login`
