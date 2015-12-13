@@ -38,6 +38,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'ffaker'
   gem 'rspec-rails'
+  gem 'simplecov', require: false
   gem 'spring'
   gem 'web-console', '~> 2.0'
 end
