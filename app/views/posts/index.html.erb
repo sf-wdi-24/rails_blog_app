@@ -1,2 +1,6 @@
-<h1>Posts#index</h1>
-<p>Find me in app/views/posts/index.html.erb</p>
+<h1>Welcome to the blog!</h1>
+<hr>
+<% @posts.each do |post| %>
+  <strong><%= post.title %></strong> - <%= link_to "View Post", post_path(post) %>
+  <hr>
+<% end %>
