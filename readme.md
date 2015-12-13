@@ -31,6 +31,8 @@
   * `POST /login` or `POST /sessions`
   * `GET /logout`
 
+**If you get stuck at any point, or need extra guidance, feel free to look at the [solution branch](https://github.com/sf-wdi-24/rails_blog_app) or follow along with the <a href="https://www.railstutorial.org/book" target="_blank">*Ruby on Rails Tutorial* by Michael Hartl</a>.**
+
 ## Bonus
 
 * *Authorize* your site by only letting users update and delete their own accounts. **Hints:**
