@@ -61,6 +61,7 @@ class UsersController < ApplicationController
     # only let current_user delete their own account
     if current_user == @user
       @user.destroy
+      session[:user_id] = nil
       flash[:notice] = "Successfully deleted profile."
       redirect_to root_path
     else
