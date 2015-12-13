@@ -8,15 +8,48 @@ class CommentsController < ApplicationController
   end
 
   def create
+    @comment = current_user.comments.new(comment_params)
+    @post.comments << @comment
+    if @comment.save
+      flash[:notice] = "Successfully added comment."
+      redirect_to post_path(@post)
+    else
+      flash[:error] = @comment.errors.full_messages.join(", ")
+      redirect_to new_post_comment(@post)
+    end
   end
 
   def edit
+    # don't let current_user see another user's comment edit view
+    unless current_user == @comment.user
+      redirect_to user_path(current_user)
+    end
   end
 
   def update
+    # only let current_user update their own comments
+    if current_user == @comment.user
+      if @comment.update_attributes(comment_params)
+        flash[:notice] = "Successfully updated comment."
+        redirect_to post_path(@post)
+      else
+        flash[:error] = @comment.errors.full_messages.join(", ")
+        redirect_to edit_post_comment_path(@post, @comment)
+      end
+    else
+      redirect_to user_path(current_user)
+    end
   end
 
   def destroy
+    # only let current_user delete their own comments
+    if current_user == @comment.user
+      @comment.destroy
+      flash[:notice] = "Successfully deleted comment."
+      redirect_to post_path(@post)
+    else
+      redirect_to user_path(current_user)
+    end
   end
 
   private

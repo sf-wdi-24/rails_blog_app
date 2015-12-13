@@ -2,6 +2,7 @@
 <hr>
 <p><strong>Email:</strong> <%= @user.email %></p>
 <p class="small text-muted">Joined <%= time_ago_in_words(@user.created_at) %> ago</p>
+<p class="small text-muted"><%= @user.posts.count %> <%= "post".pluralize(@user.posts.count) %>, <%= @user.comments.count %> <%= "comment".pluralize(@user.comments.count) %></p>
 
 <!-- only let user who owns this account see edit/delete buttons -->
 <% if current_user && current_user == @user %>
@@ -17,7 +18,9 @@
   <h4>User's Posts</h4>
   <hr>
   <% @user.posts.each do |post| %>
-    <strong><%= post.title %></strong> - <%= link_to "View Post", post_path(post) %>
+    <strong><%= post.title %></strong>
+    <span class="small text-muted">(<%= post.comments.count %> <%= "comment".pluralize(post.comments.count) %>)</span> 
+      - <%= link_to "View Post", post_path(post) %>
     <hr>
   <% end %>
 <% end %>

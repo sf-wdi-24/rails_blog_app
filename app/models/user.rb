@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   # note: has_secure_password automatically adds validations for presence
   # of password, password length < 72 characters, and password_confirmation
