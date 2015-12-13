@@ -137,8 +137,9 @@ RSpec.describe UsersController, type: :controller do
     context "not logged in" do
       before do
         # create user, don't log them in
-        @user = FactoryGirl.create(:user)
-        get :edit, id: @user.id
+        user = FactoryGirl.create(:user)
+        
+        get :edit, id: user.id
       end
 
       it "should redirect to 'login_path'" do
@@ -155,6 +156,134 @@ RSpec.describe UsersController, type: :controller do
         
         another_user = FactoryGirl.create(:user)
         get :edit, id: another_user.id
+      end
+
+      it "should redirect_to 'user_path'" do
+        expect(response.status).to be(302)
+        expect(response).to redirect_to(user_path(@current_user))
+      end
+    end
+  end
+
+  describe "#update" do
+    context "logged in" do
+      before do
+        # create and log in current_user
+        @current_user = FactoryGirl.create(:user)
+        session[:user_id] = @current_user.id
+      end
+
+      context "success" do
+        before do
+          @new_email = FFaker::Internet.email
+          put :update, id: @current_user.id, user: { email: @new_email }
+          
+          # reload @current_user to get changes from :update
+          @current_user.reload
+        end
+
+        it "should update current_user in the database" do
+          expect(@current_user.email).to eq(@new_email)
+        end
+
+        it "should redirect_to 'user_path'" do
+          expect(response.status).to be(302)
+          expect(response).to redirect_to(user_path(@current_user))
+        end
+      end
+
+      context "failed validations" do
+        before do
+          # update with blank user params (fails validations)
+          put :update, id: @current_user.id, user: { email: nil }
+        end
+
+        it "should display an error message" do
+          expect(flash[:error]).to be_present
+        end
+
+        it "should redirect_to 'edit_user_path'" do
+          expect(response).to redirect_to(edit_user_path)
+        end
+      end
+    end
+
+    context "not logged in" do
+      before do
+        # create user, don't log them in
+        user = FactoryGirl.create(:user)
+        
+        new_email = FFaker::Internet.email
+        put :update, id: user.id, user: { email: new_email }
+      end
+
+      it "should redirect to 'login_path'" do
+        expect(response.status).to be(302)
+        expect(response).to redirect_to(login_path)
+      end
+    end
+
+    context "trying to update another user" do
+      before do
+        # create and log in current_user
+        @current_user = FactoryGirl.create(:user)
+        session[:user_id] = @current_user.id
+        
+        another_user = FactoryGirl.create(:user)
+        new_email = FFaker::Internet.email
+        put :update, id: another_user.id, user: { email: new_email }
+      end
+
+      it "should redirect_to 'user_path'" do
+        expect(response.status).to be(302)
+        expect(response).to redirect_to(user_path(@current_user))
+      end
+    end
+  end
+
+  describe "#destroy" do
+    context "logged in" do
+      before do
+        # create and log in current_user
+        current_user = FactoryGirl.create(:user)
+        session[:user_id] = current_user.id
+        
+        @all_users = User.count
+        delete :destroy, id: current_user.id
+      end
+
+      it "should remove current_user from the database" do
+        expect(User.count).to eq(@all_users - 1)
+      end
+
+      it "should redirect_to 'root_path'" do
+        expect(response.status).to be(302)
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
+    context "not logged in" do
+      before do
+        # create user, don't log them in
+        user = FactoryGirl.create(:user)
+        
+        delete :destroy, id: user.id
+      end
+
+      it "should redirect to 'login_path'" do
+        expect(response.status).to be(302)
+        expect(response).to redirect_to(login_path)
+      end
+    end
+
+    context "trying to destroy another user" do
+      before do
+        # create and log in current_user
+        @current_user = FactoryGirl.create(:user)
+        session[:user_id] = @current_user.id
+        
+        another_user = FactoryGirl.create(:user)
+        delete :destroy, id: another_user.id
       end
 
       it "should redirect_to 'user_path'" do
