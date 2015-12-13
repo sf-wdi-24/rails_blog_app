@@ -40,6 +40,8 @@
   * If `current_user` is the same `@user` found by the `id` in the URL params, the user is authorized to update and delete.
 * Another step to authorization is making sure the `current_user` cannot sign up or log in again. Use the `current_user` method in your controllers to authorize those routes as well.
 
+Refer to the [solution_authorization branch](https://github.com/sf-wdi-24/rails_blog_app/tree/solution_authorization) for guidance.
+
 ## Submission
 
 * As you make code changes, frequently commit and push to GitHub.
