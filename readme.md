@@ -31,7 +31,7 @@
   * `POST /login` or `POST /sessions`
   * `GET /logout`
 
-**If you get stuck at any point, or need extra guidance, feel free to look at the [solution branch](https://github.com/sf-wdi-24/rails_blog_app) or follow along with the <a href="https://www.railstutorial.org/book" target="_blank">*Ruby on Rails Tutorial* by Michael Hartl</a>.**
+**If you get stuck at any point or need extra guidance, feel free to look at the [solution branch](https://github.com/sf-wdi-24/rails_blog_app/tree/solution) or follow along with the <a href="https://www.railstutorial.org/book" target="_blank">*Ruby on Rails Tutorial* by Michael Hartl</a>.**
 
 ## Bonus
 
