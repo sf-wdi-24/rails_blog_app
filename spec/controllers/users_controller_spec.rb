@@ -52,7 +52,7 @@ RSpec.describe UsersController, type: :controller do
     context "success" do
       before do
         @users_count = User.count
-        post :create, user: { email: FFaker::Internet.email, password: FFaker::Lorem.words(2).join }
+        post :create, user: { email: FFaker::Internet.email, password: FFaker::Lorem.words(5).join }
       end
 
       it "should add new user to the database" do
@@ -87,7 +87,7 @@ RSpec.describe UsersController, type: :controller do
         @current_user = FactoryGirl.create(:user)
         session[:user_id] = @current_user.id
 
-        post :create, user: { email: FFaker::Internet.email, password: FFaker::Lorem.words(2).join }
+        post :create, user: { email: FFaker::Internet.email, password: FFaker::Lorem.words(5).join }
       end
 
       it "should redirect to 'user_path'" do
