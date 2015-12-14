@@ -211,7 +211,7 @@ RSpec.describe PostsController, type: :controller do
         end
 
         it "should redirect_to 'edit_post_path'" do
-          expect(response).to redirect_to(edit_post_path)
+          expect(response).to redirect_to(edit_post_path(@post))
         end
       end
     end
@@ -267,12 +267,12 @@ RSpec.describe PostsController, type: :controller do
         post = FactoryGirl.create(:post)
         @current_user.posts << post
         
-        @all_posts = @current_user.posts.count
+        @posts_count = @current_user.posts.count
         delete :destroy, id: post.id
       end
 
       it "should remove current_user's post from the database" do
-        expect(@current_user.posts.count).to eq(@all_posts - 1)
+        expect(@current_user.posts.count).to eq(@posts_count - 1)
       end
 
       it "should redirect_to 'user_path'" do

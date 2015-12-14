@@ -203,7 +203,7 @@ RSpec.describe UsersController, type: :controller do
         end
 
         it "should redirect_to 'edit_user_path'" do
-          expect(response).to redirect_to(edit_user_path)
+          expect(response).to redirect_to(edit_user_path(@current_user))
         end
       end
     end
@@ -248,12 +248,12 @@ RSpec.describe UsersController, type: :controller do
         current_user = FactoryGirl.create(:user)
         session[:user_id] = current_user.id
         
-        @all_users = User.count
+        @users_count = User.count
         delete :destroy, id: current_user.id
       end
 
       it "should remove current_user from the database" do
-        expect(User.count).to eq(@all_users - 1)
+        expect(User.count).to eq(@users_count - 1)
       end
 
       it "should redirect_to 'root_path'" do
