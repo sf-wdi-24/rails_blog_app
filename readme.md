@@ -2,7 +2,7 @@
 
 **Objective:** Use Rails to build a full-stack blog application. You will be building this app over the course of three evenings.
 
-**Your objective for this evening is to set up the `users` resource of your blog, and implement authentication, validations, and error-handling.**
+**Your objective for this evening is to set up the `users` resource of your blog and implement authentication, validations, and error-handling.**
 
 ## Getting Started
 
