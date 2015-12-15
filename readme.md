@@ -7,7 +7,7 @@
 ## Getting Started
 
 1. Fork this repo, and clone it into your `develop` folder on your local machine.
-2. Change directories into `rails_blog_app`, and run `rake db:create` from the Terminal.
+2. Change directories into `rails_blog_app`, and run `rake db:create db:migrate` from the Terminal.
 3. Start your Rails server, then you're ready to go!
 
 ## Minimum Requirements
