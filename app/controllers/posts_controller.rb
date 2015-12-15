@@ -16,15 +16,30 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     if @post.save
       redirect_to root_path
+      flash[:notice] = 'Post successfully created'
+    else
+      render :new
+      flash[:alert] = 'Something went wrong, try again.'
+    end
   end
 
   def edit
   end
 
   def update
+    if @post.update(post_params)
+      redirect_to post_path(@post)
+      flash[:notice] = 'Post successfully updated'
+    else
+      render :edit
+      flash[:alert] = 'Something went wrong, try again.'
+    end
   end
 
   def destroy
+    @post.destroy
+    redirect_to root_path
+    flash[:alert] = 'Post deleted'
   end
 
 private
