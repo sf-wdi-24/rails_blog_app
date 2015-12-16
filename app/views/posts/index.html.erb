@@ -1,0 +1,7 @@
+<h1>Hello World</h1>
+<% @posts.each do |post| %>
+	<p>
+		<strong>Name:</strong> <%= post.title %><br>
+		<strong>Description:</strong> <%= post.description %><br> At: <%= post.created_at %>
+	</p>
+<% end %>	
