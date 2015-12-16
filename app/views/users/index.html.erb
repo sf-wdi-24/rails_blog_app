@@ -3,5 +3,5 @@
 <!-- accessing instance variable and looping through every user and printing the list on the page --> 
 <!-- the "| |" is a similar to a parameter, representing one user -->
 <% @users.each do |user| %>
-	<%= user.email %> - <%= Time.now.strftime("%m/%d/%Y") %>
+  <%= user.email %> - <%= Time.now.strftime("%m/%d/%Y") %>
 <% end %> 
