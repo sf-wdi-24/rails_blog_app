@@ -13,10 +13,10 @@
   <title>RailsBlogApp</title>
 </head>
 <body>
- <% flash.each do |name, msg| %>
-    <div class="col-md-12 alert alert-danger text-center">
-      <%= msg %>
-    </div>
+  <% flash.each do |msg| %>
+  <div class="col-md-12 alert alert-danger text-center">
+    <%= msg %>
+  </div>
   <% end %>
   <div class="container">
     <% if current_user %>

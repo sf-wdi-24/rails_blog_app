@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
 			session[:user_id] = user.id
 			redirect_to '/'
 		else
-			# flash[:error] = user.errors.full_messages.join(', ')
+			flash[:error] = "Incorrect login email or password"
 			redirect_to '/login'
 		end
 	end
