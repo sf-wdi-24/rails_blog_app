@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
 
+  before_filter :authorize, except: [:new]
+  before_filter :current_user_logged_in, except: [:index, :show, :edit]
+
   def index
     @users = User.all
   end

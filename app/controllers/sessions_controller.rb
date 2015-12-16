@@ -1,4 +1,7 @@
 class SessionsController < ApplicationController
+
+	before_filter :current_user_logged_in, except: [:destroy]
+
 	def new
 	end
 
