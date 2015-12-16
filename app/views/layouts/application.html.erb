@@ -13,9 +13,30 @@
   <title>RailsBlogApp</title>
 </head>
 <body>
+<div class="container">
 
-  <%= yield %>
+    <!-- flash messages for errors -->
+    <div class="row">
+       <div class="col md-12">
+          <% flash.each do |name, msg| %>
+            <div><%= msg %></div>
+          <% end %>
+        </div>
+    </div>
+    <!-- loged in user name -->
+    <div class="row">
+      <div class="col-md-12">
+        <% if current_user %>
+          Signed in as <%= current_user.email %> | <%= link_to "Logout", '/logout' %>
+        <% else %>
+          <%= link_to 'Login', '/login' %> | <%= link_to 'Signup', '/signup' %>
+        <% end %>
+      </div>
+    </div>
   
+  <%= yield %>
+
+</div>
   <!-- application javascript file -->
   <%= javascript_include_tag :application %>
 
