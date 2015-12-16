@@ -1,0 +1,7 @@
+<h1>Add a new bike here</h1>
+
+<%= form_for :bike, url: "/bikes", method: "post" do |f| %>
+	<%= f.text_field :name %>
+	<%= f.text_area :description %>
+	<%= f.submit "Save Bike" %>
+<% end %>
