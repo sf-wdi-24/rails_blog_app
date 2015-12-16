@@ -6,18 +6,26 @@ class UsersController < ApplicationController
 	end	
 		
 	def new
+		if current_user
+			redirect_to user_path(current_user)
+		else
 		@user = User.new
+		end
 	end
 
 	def create
+		if current_user
+			redirect_to user_path(current_user)
+		else
 		@user = User.new(user_params)
 		if @user.save
 			session[:user_id] = @user_id
-			flash[:notice] = "Successfully signed in."
+			flash[:notice] = 'Successfully signed in.'
 			redirect_to user_path(@user)
 		else
-			flash[:error] = @user.errors.full_messages.join(", ")
+			flash[:error] = @user.errors.full_messages.join(', ')
 			redirect_to '/login'
+		end
 		end
 	end
 
@@ -29,10 +37,10 @@ class UsersController < ApplicationController
 
 	def update
 		if @user.update_attributes(user_params)
-			flash[:notice] = "Successfully updated profile"
+			flash[:notice] = 'Successfully updated profile'
 			redirect_to user_path(@user)
 		else
-			flash[:error] = @user.errors.full_messages.join(", ")
+			flash[:error] = @user.errors.full_messages.join(', ')
 			redirect_to edit_user_path(@user)
 		end
 	end
@@ -40,7 +48,7 @@ class UsersController < ApplicationController
 	def destroy
 		@user.destroy
 		session[:user_id] = nil
-		flash[:notice] = "Successfully deleted profile."
+		flash[:notice] = 'Successfully deleted profile.'
 		redirect_to '/login'
 	end
 

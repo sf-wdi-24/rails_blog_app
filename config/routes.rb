@@ -1,13 +1,11 @@
 Rails.application.routes.draw do
 
-  root to: 'users#index'
-  resources :users
+	root to: 'users#index'
+	resources :users, except: [:new]
 
-get '/login' => 'sessions#new'
-post '/login' => 'sessions#create'
-get '/logout' => 'sesions#destroy'
-
-get '/users/new' => 'users#new'
-post '/users' => 'users#create'
+	get '/users/new' => 'users#new'
+	get '/login' => 'sessions#new'
+	get '/logout' => 'sessions#destroy'
+	resources :sessions, only: [:create]
 
 end
