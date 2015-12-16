@@ -13,3 +13,12 @@
  *= require_tree .
  *= require_self
  */
+body {
+	margin-top: 25px;
+	margin-left: 25px;
+	margin-right: 25px;
+}
+
+.form-group {
+	max-width: 500px;
+}
