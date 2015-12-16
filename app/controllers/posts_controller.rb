@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only:[:edit, :update, :show, :destroy]
+  before_filter :authorize, only:[:edit, :update, :destroy]
+
 
   def index
     @posts = Post.all
@@ -9,7 +11,12 @@ class PostsController < ApplicationController
   end
 
   def new
-    @post = Post.new
+    if current_user
+      @post = Post.new
+    else
+      redirect_to '/login'
+      flash[:alert] = 'Must be logged in to create post.'
+    end
   end
 
   def create
@@ -24,6 +31,12 @@ class PostsController < ApplicationController
   end
 
   def edit
+    if current_user.id != @post.user.id 
+      redirect_to root_path
+      flash[:alert] = 'Post does not belong to you'
+    else
+      render :edit
+    end
   end
 
   def update
