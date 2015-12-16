@@ -47,7 +47,13 @@
     </div>
   <% end %>
   
-  <%= yield %>
+  <div class="container site-content">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <%= yield %>
+      </div>
+    </div>
+  </div>
   
   <!-- application javascript file -->
   <%= javascript_include_tag :application %>
