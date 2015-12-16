@@ -18,6 +18,13 @@ class BikesController < ApplicationController
 
 		render :index
 	end
+	def edit
+		bike_id = params[:id]
+		#get bike id and save it
+		@bike = Bike.find_by_id(bike_id)
+		#render the edit view
+		render :edit
+	end
 
 	def create
 		#create params
