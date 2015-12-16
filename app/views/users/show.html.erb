@@ -1,5 +1,7 @@
 <h1>Show User</h1>
 <hr>
 
-<%= @user.email %>
-<%= @user.password %>
+<p><%= @user.email %></p>
+<p><%= @user.password%></p>
+<hr>
+<%= link_to "All Users", users_path, class: "btn btn-default" %>

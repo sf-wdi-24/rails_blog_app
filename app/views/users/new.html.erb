@@ -1,11 +1,14 @@
-<h1>New Users</h1>
+<div align="center">
+<h1>Signup!</h1>
 <hr>
-<%= form_for @user do |f| %>	
-	<div class="form-group">
-		<%= f.text_field :email, placeholder: "Email", autofocus: true, class: "form-control"%>
-	</div>
-	<div class="form-group"> 
-		<%= f.text_field :password, placeholder: "Password", class:"form-control" %>
-	</div>
-		<%= f.submit "Save User", class: "btn btn-block btn-default"%>
+<%= form_for :user, url: '/users' do |f| %>
+
+  <p>Email:</p> <p><%= f.text_field :email %></p>
+  <hr>
+  <p>Password:</p> <p><%= f.password_field :password %></p>
+  <hr>
+  <p>Password Confirmation:</p> <p><%= f.password_field :password_confirmation %></p>
+  <hr>
+  <%= f.submit "Submit" %>
+
 <% end %>
