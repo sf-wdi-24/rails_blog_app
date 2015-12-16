@@ -15,7 +15,7 @@ class UsersController < ApplicationController
       redirect_to root_path
       flash[:notice] = 'You have signed up!'
     else
-      render :new
+      redirect_to '/signup'
       flash[:alert] = 'Please do not leave anything blank, password must be longer than 6 characters'
     end
   end

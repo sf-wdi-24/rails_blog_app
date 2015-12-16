@@ -1,2 +1,34 @@
-<h1>Posts#index</h1>
-<p>Find me in app/views/posts/index.html.erb</p>
+<!-- <div class="callout large primary">
+  <div class="row text-center">
+    <h1>Something goes here</h1>
+  </div>
+</div> -->
+
+<% @posts.each do |post| %>
+<div class="row">
+  <div class="blog-post">
+    <div class="medium-8 columns">
+      <h3><%= link_to post.title, post_path(post) %> <small>Created at:<%= post.created_at %></small></h3>
+      <figure class="photo">
+        <%= image_tag post.image_url(:thumb).to_s %>
+      </figure>
+      <p><%= post.body %></p>
+      <div class="callout">
+        <ul class="menu simple">
+          <li> Posted by:<%= post.user.name %></li>
+          <% if current_user && current_user.id == post.user.id %>
+            <li><%= link_to post_path(post), method: :delete, class:"right button tiny warning" do %>
+              <i class="fa fa-trash"></i>
+            <% end %>
+            </li>
+            <li><%= link_to edit_post_path(post), class:"right button tiny warning" do %>
+              <i class="fa fa-pencil-square-o"></i>
+            <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>

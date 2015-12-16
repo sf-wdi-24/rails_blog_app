@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
       redirect_to root_path
       flash[:notice] = 'Welcome back'
     else
-      render :new
+      redirect_to '/login'
       flash[:alert] = 'Credentials are not correct, try again'
     end
   end
