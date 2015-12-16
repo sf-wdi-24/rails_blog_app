@@ -13,6 +13,15 @@
   <title>RailsBlogApp</title>
 </head>
 <body>
+<!-- show users name if theyre logged in  -->
+<% if current_user %>
+  Signed in as <%= current_user.name %> | <%= link_to "Logout", '/logout' %>
+
+  <% else %>
+    <%= link_to 'Login', '/login' %> | <%= link_to 'Signup', '/signup' %>
+<% end %>
+
+
 
   <%= yield %>
   
