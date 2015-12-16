@@ -1,5 +1,7 @@
 class BikesController < ApplicationController
 
+	# add a before_filter :authorize here??  Not sure if I need to secure the whole model 
+
 	def new
 		@bike = Bike.new
 		render :new
@@ -24,6 +26,27 @@ class BikesController < ApplicationController
 		@bike = Bike.find_by_id(bike_id)
 		#render the edit view
 		render :edit
+	end
+
+	def update
+		# get the bike id
+		bike_id = params[:id]
+
+		bike = Bike.find_by_id(bike_id)
+
+		bike.update_attributes(bike_params)
+
+		redirect_to bike_path(bike)
+	end
+
+	def destroy
+		bike_id = params[:id]
+
+		bike = Bike.find_by_id(bike_id)
+
+		bike.destroy
+
+		redirect_to bike_path
 	end
 
 	def create
