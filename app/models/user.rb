@@ -3,5 +3,13 @@ class User < ActiveRecord::Base
 
 	has_many :bikes, dependent: :destroy
 
-	has_secure_password
+	# has_secure_password
+
+	def password
+			"{#password}"
+	end
+	def email
+			"{#password}"
+	end
+
 end
