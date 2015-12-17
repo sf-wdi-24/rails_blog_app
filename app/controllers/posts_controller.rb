@@ -32,7 +32,7 @@ class PostsController < ApplicationController
   end
 
   def edit
-    if current_user.id != @post.user.id 
+    if current_user.id != @post.user.id || current_user.nil
       redirect_to root_path
       flash[:alert] = 'Post does not belong to you'
     else
@@ -41,19 +41,29 @@ class PostsController < ApplicationController
   end
 
   def update
-    if @post.update(post_params)
-      redirect_to post_path(@post)
-      flash[:notice] = 'Post successfully updated'
+    if current_user.id == @post.user.id 
+      if @post.update(post_params)
+        redirect_to post_path(@post)
+        flash[:notice] = 'Post successfully updated'
+      else
+        render :edit
+        flash[:alert] = 'Something went wrong, try again.'
+      end
     else
-      render :edit
-      flash[:alert] = 'Something went wrong, try again.'
+      redirect_to root_path
+      flash[:alert] = 'Post does not belong to you'
     end
   end
 
   def destroy
-    @post.destroy
-    redirect_to root_path
-    flash[:alert] = 'Post deleted'
+    if current_user.id == @post.user.id
+      @post.destroy
+      redirect_to root_path
+      flash[:alert] = 'Post deleted'
+    else
+      redirect_to root_path
+      flash[:alert] = 'Post does not belong to you.'
+    end
   end
 
 private

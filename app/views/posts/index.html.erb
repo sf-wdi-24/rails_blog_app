@@ -9,7 +9,7 @@
           <p><%= post.body %></p>
           <div class="callout">
             <ul class="menu simple">
-              <li> by <em><%= post.user.name %></em> <small><%= post.created_at %></small></li>
+              <li> by <em><%= post.user.name %></em> <small><%= time_ago_in_words(post.created_at) %> ago</small></li>
               <% if current_user && current_user.id == post.user.id %>
                 <li><%= link_to post_path(post), method: :delete, class:"right button tiny warning" do %>
                   <i class="fa fa-trash"></i>
