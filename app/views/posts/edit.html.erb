@@ -1,0 +1,6 @@
+<h3>Edit your Post</h3>
+<%= form_for @post do |f| %>
+	<p><%= f.text_field :title, class: 'form-control', placeholder: 'Title' %></p>
+	<p><%= f.text_area :content, class: 'form-control', placeholder: 'Content, must be about Dinosaurs' %></p>
+	<%= f.submit "Submit", class: 'form-control btn btn-danger' %>
+	<% end %>

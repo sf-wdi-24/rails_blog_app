@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-	attr_reader :name
-
+ 	
+ 	before_action :get_user_id, only:[:edit, :update, :show, :destory]
 
 	def index
 	end
@@ -23,13 +23,14 @@ class UsersController < ApplicationController
 	end
 
 	def show
-		user_id = params[:id]
-		@user = User.find_by_id(user_id)
+		if current_user == @user
+			render :show
+		else
+			redirect_to login_path
+		end
 	end
 
 	def edit
-		user_id = params[:id]
-		@user = User.find_by_id(user_id)
 		if current_user == @user
 			render :edit
 		else
@@ -39,8 +40,6 @@ class UsersController < ApplicationController
 	end
 
 	def update
-		user_id = params[:id] 
-		@user = User.find_by_id(user_id)
 		if current_user == @user
 			if @user.update_attributes(user_params)
 				flash[:notice] = "You have updated your profile"
@@ -56,8 +55,6 @@ class UsersController < ApplicationController
 	end
 
 	def destroy
-		user_id = params[:id] 
-		@user = User.find_by_id(user_id)
 		if current_user == @user
 			@user.destroy
 			session[:user_id] = nil
@@ -74,6 +71,10 @@ class UsersController < ApplicationController
 
 	def user_params
 		params.require(:user).permit(:email, :password, :name)
+	end
+
+	def get_user_id
+		@user = User.find_by_id(params[:id])
 	end
 
 end
