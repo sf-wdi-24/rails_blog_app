@@ -4,17 +4,25 @@ class UsersController < ApplicationController
   end
 
   def new
-    @user = User.new
+    if current_user
+      redirect_to user_path(current_user)
+    else
+      @user = User.new
+    end
   end
 
   def create
-    @user = User.new(user_params)
-    if @user.save
-      session[:user_id] = @user.id
-      redirect_to user_path(@user)
+    if current_user
+      redirect_to user_path(current_user)
     else
-      flash[:error] = @user.errors.full_messages.join(', ')
-      redirect_to new_user_path
+      @user = User.new(user_params)
+      if @user.save
+        session[:user_id] = @user.id
+        redirect_to user_path(@user)
+      else
+        flash[:error] = @user.errors.full_messages.join(', ')
+        redirect_to new_user_path
+      end
     end
   end
 
@@ -26,16 +34,24 @@ class UsersController < ApplicationController
   def edit
     user_id = params[:id]
     @user = User.find_by_id(user_id)
+    unless current_user == @user
+      redirect_to user_path(current_user)
+      flash[:notice] = "You cannot edit other's accounts!"
+    end
   end
 
   def update
     user_id = params[:id]
     @user = User.find_by_id(user_id)
-    if @user.update_attributes(user_params)
-      redirect_to user_path(@user)
+    if current_user == @user
+      if @user.update_attributes(user_params)
+        redirect_to user_path(@user)
+      else
+        flash[:error] = @user.errors.full_messages.join(', ')
+        redirect_to edit_user_path(@user)
+      end
     else
-      flash[:error] = @user.errors.full_messages.join(', ')
-      redirect_to edit_user_path(@user)
+      redirect_to user_path(current_user)
     end
   end
 
