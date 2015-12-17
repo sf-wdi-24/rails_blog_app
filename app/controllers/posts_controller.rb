@@ -32,7 +32,7 @@ class PostsController < ApplicationController
   end
 
   def edit
-    if current_user.id != @post.user.id || current_user.nil
+    if current_user.id != @post.user.id || current_user.nil?
       redirect_to root_path
       flash[:alert] = 'Post does not belong to you'
     else
