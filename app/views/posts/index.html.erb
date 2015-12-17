@@ -1,0 +1,6 @@
+<h1>Welcome to the blog!</h1>
+<hr>
+<% @posts.each do |post| %>
+  <strong><%= post.title %></strong> - <%= link_to "View Post", post_path(post) %>
+  <hr>
+<% end %>
