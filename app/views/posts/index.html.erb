@@ -1,0 +1,9 @@
+<h1>All Posts</h1>
+<hr>
+<% @posts.each do |post| %>
+	<h3><strong>Title:</strong> <%= post.title %></h3>
+	<h3><strong>Content:</strong> <%= post.content %></h3>
+	<h3><strong>User:</strong> <%= post.user.name %></h3>
+	<%= link_to "Display Post", post_path(post), class: "btn btn-block btn-info" %>
+	<hr>
+<% end %>
