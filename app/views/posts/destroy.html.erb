@@ -1,2 +1,16 @@
-<h1>Posts#destroy</h1>
-<p>Find me in app/views/posts/destroy.html.erb</p>
+<h1>Destroy Post</h1>
+<hr>
+
+  <%= form_for @post do |f| %>
+
+  <div class="form-group">
+    <%= f.text_field :title, class: "form-control", placeholder: "Title", autofocus: true %>
+  </div>
+  <div class="form-group">
+    <%= f.text_area :story, class: "form-control", placeholder: "Story" %>
+  </div>
+  <div class="form-group">
+    <%= f.submit "Delete", class: "btn btn-block btn-default" %>
+  </div>
+  
+<% end %>

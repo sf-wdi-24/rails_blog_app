@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
 
-root to: "users#index"
+root to: "posts#index" #changed to go to posts instead of index  n
   
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'

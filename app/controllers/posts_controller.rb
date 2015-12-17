@@ -18,6 +18,11 @@ class PostsController < ApplicationController
   end
 
   def update
+    post_id = params[:id]
+    post = Post.find_by_id(post_id)
+    post_params = params.require(:post).permit(:title, :story)
+    post.update_attributes(post_params)
+    redirect_to post_path(post)
   end
 
   def edit
@@ -30,7 +35,7 @@ class PostsController < ApplicationController
     post_id = params[:id]
     post = Post.find_by_id(post_id)
     post.destroy
-    redirect_to posts_path
+    redirect_to posts_path 
   end
 
   def index
@@ -42,6 +47,6 @@ class PostsController < ApplicationController
   def show
     post_id = params[:id]
     @post = Post.find_by_id(post_id)
-    render :show
+    redirect_to posts_path #changed to go to page of all posts
   end
 end
