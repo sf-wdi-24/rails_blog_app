@@ -5,6 +5,8 @@ class CreateBikes < ActiveRecord::Migration
       t.string :description
 
       t.timestamps null: false
+
+      t.belongs_to :user
     end
   end
 end
