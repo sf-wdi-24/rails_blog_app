@@ -1,3 +1,5 @@
-<h3><%= @post.title %></h3>
-<p><%=  @post.description %></p>
-<%= button_to "Delete", @post, method: :delete %>
+<div class= "text-center">
+	<h2><strong>Title: </strong> <%= @post.title.capitalize %></h2>
+	<hr>
+	<h4><strong>Descrption: </strong><%= @post.description %></h4>
+</div>

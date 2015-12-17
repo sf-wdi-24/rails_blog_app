@@ -1,5 +1,18 @@
-<%= form_for @post do |f| %>
-  <%= f.text_field :title %>
-  <%= f.text_area :description %>
-  <%= f.submit "Save Post" %>
-<% end %>
+
+<div class="row">
+	<div class="col-md-4 col-offset-md-4">
+		<h1>New Post</h1>
+		<hr>
+
+		<%= form_for @post do |f| %>
+			<div class="form-group">
+			  <%= f.text_field :title %>
+			</div>
+			<div class="form-group">  
+			  <%= f.text_area :description %>
+			</div>  
+			  <%= f.submit "Save Post" %>
+		<% end %>
+		
+	</div>
+</div>
