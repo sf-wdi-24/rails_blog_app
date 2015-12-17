@@ -1,33 +1,21 @@
 <%= form_for @user do |f| %>
 	<div class="form-group">
-	 	<div class="col-sm-10 col-sm-offset-1">
-			Name:
-			<%= f.text_field :name, class: "form-control" %>
-	 	</div>
+		Name:
+		<%= f.text_field :name, class: "form-control" %>
 	</div>
 	<div class="form-group">
-		<div class="col-sm-10 col-sm-offset-1">
-			Email:
-			<%= f.text_field :email, class: "form-control" %>
-		</div>
+		Email:
+		<%= f.text_field :email, class: "form-control" %>
 	</div>
 	<div class="form-group">
-		<div class="col-sm-10 col-sm-offset-1">
-			Password:
-			<%= f.password_field :password, class: "form-control" %>
-		</div>
+		Password:
+		<%= f.password_field :password, class: "form-control" %>
 	</div>
 	<div class="form-group">
-		<div class="col-sm-10 col-sm-offset-1">
-			Confirm Password:
-			<%= f.password_field :password_confirmation, class: "form-control" %>
-		</div>
+		Confirm Password:
+		<%= f.password_field :password_confirmation, class: "form-control" %>
 	</div>
 	<div class="form-group">
-		<div class="col-sm-10 col-sm-offset-1">
-			<br>
-			<%= f.submit "Submit", class: "btn btn-primary" %>
-		</div>
+		<%= f.submit "Submit", class: "btn btn-primary" %>
 	</div>
 <% end %>
-
