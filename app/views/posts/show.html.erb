@@ -1,0 +1,7 @@
+<h1>Show Post</h1>
+<hr>
+<h3><strong>Title:</strong> <%= @post.title %></h3>
+<h3><strong>Content:</strong> <%= @post.content %></h3>
+<h3><strong>User:</strong> <%= @post.user.name %></h3>
+<%= link_to "Edit Post", edit_post_path(@post), class: "btn btn-block btn-info" %>
+<%= button_to "Delete Post", post_path(@post), method: :delete, class: "btn btn-block btn-danger" %>

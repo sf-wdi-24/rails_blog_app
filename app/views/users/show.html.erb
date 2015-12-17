@@ -1,2 +1,3 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<h1>Welcome, <%= @user.name %></h1>
+<hr>
+<%= button_to "Continue to Blog Posts", posts_path, class: "btn btn-block btn-info" %>

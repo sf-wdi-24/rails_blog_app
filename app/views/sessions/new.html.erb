@@ -2,8 +2,14 @@
 <hr>
 <%= form_tag '/login' do %>
 
-	Email: <%= text_field_tag :email %>
-	Password: <%= password_field_tag :password %>
-	<%= submit_tag "Submit" %>
+	<div class="form-group">
+		<%= text_field_tag :email, nil, class: "form-control", placeholder: "Email" %>
+	</div>
+	<div class="form-group">
+		<%= password_field_tag :password, nil, class: "form-control", placeholder: "Password" %>
+	</div>
+	<div class="form-group">
+		<%= submit_tag "Submit", class: "btn btn-block btn-info" %>
+	</div>
 
 <% end %>
