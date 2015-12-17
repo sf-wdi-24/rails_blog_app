@@ -59,8 +59,12 @@ class BikesController < ApplicationController
 		# if bike saves, redirect to route that displays all bikes
 		if bike.save
 			redirect_to bike_path(bike)
+		else 
+			# save error messages to flash[:error] hash
+			flash[:error] = bike.errors.full_messages.join(", ")
+			redirect_to new_bike_path
+		end
 
 			#redirect to /bikes
-		end
 	end
 end

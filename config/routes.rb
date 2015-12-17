@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :bikes
 
 #these routes are for showing users
-  get '/login' => 'session#new'
+  get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
 
