@@ -5,6 +5,8 @@ class CreatePosts < ActiveRecord::Migration
       t.string :content
 
       t.timestamps null: false
+
+      t.belongs_to :user
     end
   end
 end
