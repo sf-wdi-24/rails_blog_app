@@ -1,5 +1,10 @@
 <h1 class="text-center">Welcome to Rails Blog</h1>
 <hr>
+<div class="row text-center">
+	<% if current_user %>
+		<%= link_to "Create New Post", new_post_path, class: "link" %>
+	<% end %>
+</div>
 <% @posts.each do |post| %>
 	<div class="post-index">
 		<div class="col-sm-8">
