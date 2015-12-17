@@ -1,12 +1,19 @@
 class User < ActiveRecord::Base
-	
-	has_secure_password
+  has_many :posts, dependent: :destroy
 
-	validates :password, length: {minimum: 6}, on: :create
-	validates :email, presence: true, uniqueness: true,
-		format: {
-			with: /@/,
-			message: "Please input valid email format"
+  # note: has_secure_password automatically adds validations for presence
+  # of password, password length < 72 characters, and password_confirmation
+  has_secure_password
 
-		}
+  # only validate password length on create (not update)
+  validates :password, length: { minimum: 6 }, on: :create
+
+  validates :email,
+    presence: true,
+    uniqueness: true,
+    format: {
+      with: /@/,
+      message: "not a valid format"
+    }
+
 end

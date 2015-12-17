@@ -4,9 +4,6 @@
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- bootstrap css -->
-  <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-
   <!-- application stylesheet -->
   <%= stylesheet_link_tag :application, media: :all %>
 
@@ -29,10 +26,12 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
+          <li><%= link_to "All Posts", posts_path %></li>
           <li><%= link_to "All Users", users_path %></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <% if current_user %>
+            <li><%= link_to "+ New Post", new_post_path %></li>
             <li><%= link_to "Profile", user_path(current_user) %></li>
             <li><%= link_to "Log Out", logout_path %></li>
           <% else %>
@@ -60,8 +59,5 @@
   
   <!-- application javascript file -->
   <%= javascript_include_tag :application %>
-
-  <!-- bootstrap js -->
-  <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 </body>
 </html>

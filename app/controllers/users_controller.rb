@@ -1,23 +1,34 @@
 class UsersController < ApplicationController
   before_filter :set_user, except: [:index, :new, :create]
+  before_filter :authorize, only: [:edit, :update, :destroy]
 
-	def index
+  def index
     @users = User.all
   end
 
   def new
-    @user = User.new
+    # don't let current_user see the sign up view
+    if current_user
+      redirect_to user_path(current_user)
+    else
+      @user = User.new
+    end
   end
 
   def create
-    @user = User.new(user_params)
-    if @user.save
-      session[:user_id] = @user.id
-      flash[:notice] = "Successfully signed up."
-      redirect_to user_path(@user)
+    # don't let current_user create new account
+    if current_user
+      redirect_to user_path(current_user)
     else
-      flash[:error] = @user.errors.full_messages.join(", ")
-      redirect_to signup_path
+      @user = User.new(user_params)
+      if @user.save
+        session[:user_id] = @user.id
+        flash[:notice] = "Successfully signed up."
+        redirect_to user_path(@user)
+      else
+        flash[:error] = @user.errors.full_messages.join(", ")
+        redirect_to signup_path
+      end
     end
   end
 
@@ -25,23 +36,37 @@ class UsersController < ApplicationController
   end
 
   def edit
+    # don't let current_user see another user's edit view
+    unless current_user == @user
+      redirect_to user_path(current_user)
+    end
   end
 
   def update
-    if @user.update_attributes(user_params)
-      flash[:notice] = "Successfully updated profile."
-      redirect_to user_path(@user)
+    # only let current_user update their own account
+    if current_user == @user
+      if @user.update_attributes(user_params)
+        flash[:notice] = "Successfully updated profile."
+        redirect_to user_path(@user)
+      else
+        flash[:error] = @user.errors.full_messages.join(", ")
+        redirect_to edit_user_path(@user)
+      end
     else
-      flash[:error] = @user.errors.full_messages.join(", ")
-      redirect_to edit_user_path(@user)
+      redirect_to user_path(current_user)
     end
   end
 
   def destroy
-    @user.destroy
-    session[:user_id] = nil
-    flash[:notice] = "Successfully deleted profile."
-    redirect_to root_path
+    # only let current_user delete their own account
+    if current_user == @user
+      @user.destroy
+      session[:user_id] = nil
+      flash[:notice] = "Successfully deleted profile."
+      redirect_to root_path
+    else
+      redirect_to user_path(current_user)
+    end
   end
 
   private

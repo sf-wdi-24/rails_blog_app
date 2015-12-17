@@ -1,6 +1,10 @@
 class SessionsController < ApplicationController
 
   def new
+    # don't let current_user see the log in view
+    if current_user
+      redirect_to user_path(current_user)
+    end
   end
 
   def create
