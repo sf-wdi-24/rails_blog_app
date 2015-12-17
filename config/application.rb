@@ -1,5 +1,8 @@
 require File.expand_path('../boot', __FILE__)
 
+require 'carrierwave'
+require 'carrierwave/orm/activerecord'  
+
 require "rails"
 # Pick the frameworks you want:
 require "active_model/railtie"
