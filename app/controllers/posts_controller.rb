@@ -27,7 +27,7 @@ class PostsController < ApplicationController
       flash[:notice] = 'Post successfully created'
     else
       render :new
-      flash[:alert] = 'Something went wrong, try again.'
+      flash[:alert] = @post.errors.full_messages.join(", ")
     end
   end
 
@@ -47,7 +47,7 @@ class PostsController < ApplicationController
         flash[:notice] = 'Post successfully updated'
       else
         render :edit
-        flash[:alert] = 'Something went wrong, try again.'
+        flash[:alert] = @post.errors.full_messages.join(", ")
       end
     else
       redirect_to root_path

@@ -1,2 +1,20 @@
-<h1>Posts#show</h1>
-<p>Find me in app/views/posts/show.html.erb</p>
+<div class="callout large primary">
+  <div class="column text-center">
+    <h1 class="show-after"><%= @post.title %></h1>
+  </div>
+    <div class=" row medium-8 large-7">
+      <div class="blog-post">
+        <%= image_tag @post.image_url(:thumb).to_s, class:"show-img" %> <br>
+        <p class="subheader text-center"><%= @post.body %></p>
+      </div>
+      <div class="callout">
+        <div class="menu simple">
+          <ul>
+            <li class="inline">
+              <%= link_to "Back", posts_path, class:"right button tiny warning" %>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+</div>
