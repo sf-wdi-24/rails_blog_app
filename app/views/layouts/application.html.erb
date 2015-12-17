@@ -13,7 +13,12 @@
   <title>RailsBlogApp</title>
 </head>
 <body>
-<!-- show users name if theyre logged in  -->
+
+<!-- display flash message -->
+<% flash.each do |name, msg| %>
+<div><%= msg %></div>
+<% end %>
+
 <% if current_user %>
   Signed in as <%= current_user.name %> | <%= link_to "Logout", '/logout' %>
 
