@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 		if current_user
 			redirect_to user_path(current_user)
 		else
-		@user = User.new
+			@user = User.new
 		end
 	end
 
@@ -24,7 +24,7 @@ class UsersController < ApplicationController
 			redirect_to user_path(@user)
 		else
 			flash[:error] = @user.errors.full_messages.join(', ')
-			redirect_to '/login'
+			redirect_to :users_new
 		end
 		end
 	end
