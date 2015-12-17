@@ -1,0 +1,6 @@
+<h1>Edit Post <%= @post.id %> </h1>
+<%= render "form" %>
+<br>
+<div class="form-group">
+<%= link_to "Destroy", destroy_post_path(@post), class: "btn btn-block btn-danger", method: :delete, data: { confirm: "You sure?" } %>
+</div>
