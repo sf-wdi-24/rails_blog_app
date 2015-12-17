@@ -19,11 +19,12 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <%= link_to "RailsBlogApp", root_path, class: "navbar-brand" %>
+        <%= link_to image_tag('https://www.hostnexus.com/images/site/icon_rails.png'), root_path, class: "navbar-brand" %>
       </div>
 
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
+          <li><%= link_to "All Posts", posts_path %></li>
           <li><%= link_to "All Users", users_path %></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">

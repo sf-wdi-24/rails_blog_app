@@ -15,6 +15,7 @@ class PostsController < ApplicationController
   end
 
   def create
+    # prevent non logged in user to create post
     if current_user
       @post = current_user.posts.new(post_params)
       if @post.save
@@ -62,6 +63,7 @@ class PostsController < ApplicationController
   def destroy
     post_id = params[:id]
     @post = Post.find_by_id(post_id)
+    # prevent user to delete other user's post
     if current_user == @post.user
       @post.destroy
       redirect_to posts_path

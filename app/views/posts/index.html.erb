@@ -1,10 +1,13 @@
-<h1>Welcome to Rails Blog</h1>
+<h1 class="text-center">Welcome to Rails Blog</h1>
 <hr>
 <% @posts.each do |post| %>
-	<div class="row">
-		<div class="col-sm-10 col-sm-offset-1">
-		<strong><%= post.title %></strong>
-		<%= link_to "View Post", post_path(post), class: "pull-right" %>
+	<div class="post-index">
+		<div class="col-sm-8">
+			<p class="title"><strong><%= post.title %></strong></p>
+			<p class="post-by"><i>by <%= post.user.name %></i></p>
+		</div>
+		<div class="col-sm-4 link">
+			<%= link_to "View Post", post_path(post), class: "pull-right" %>
 		</div>
 	</div>
 <% end %>
