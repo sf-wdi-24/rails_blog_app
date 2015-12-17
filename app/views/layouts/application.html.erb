@@ -4,22 +4,37 @@
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- bootstrap css -->
-  <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-
   <!-- application stylesheet -->
   <%= stylesheet_link_tag :application, media: :all %>
 
   <title>RailsBlogApp</title>
 </head>
 <body>
+<div class="container">
 
-  <%= yield %>
+    <!-- flash messages for errors -->
+    <div class="row">
+       <div class="col md-12 text-center">
+          <% flash.each do |name, msg| %>
+            <div><%= msg %></div>
+          <% end %>
+        </div>
+    </div>
+    <!-- loged in user name -->
+    <div class="row">
+      <div class="col-md-12">
+        <% if current_user %>
+          Signed in as <%= current_user.email %> | <%= link_to "Logout", '/logout' %>
+        <% else %>
+          <%= link_to 'Login', '/login' %> | <%= link_to 'Signup', '/signup' %>
+        <% end %>
+      </div>
+    </div>
   
+  <%= yield %>
+
+</div>
   <!-- application javascript file -->
   <%= javascript_include_tag :application %>
-
-  <!-- bootstrap js -->
-  <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 </body>
 </html>
