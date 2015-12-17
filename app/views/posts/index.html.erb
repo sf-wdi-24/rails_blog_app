@@ -1,8 +1,7 @@
-<div class="callout large primary">
   <div class="row" id="content">
     <% @posts.each do |post| %>
       <div class="blog-post">
-        <div class="large-8 columns collapse">
+        <div class="medium-8 columns">
           <h2><%= link_to post.title, post_path(post) %></h2>
           <figure class="photo">
             <%= image_tag post.image_url(:thumb).to_s, class:"thumbnail"%>
@@ -32,4 +31,3 @@
       </div>
     </div>
   </div>
-</div>
