@@ -1,0 +1,15 @@
+<h1><%= @post.title %></h1>
+<hr>
+<p><%= @post.content %></p>
+<p class="small text-muted">
+  Posted <%= time_ago_in_words(@post.created_at) %> ago by <%= link_to @post.user.email, user_path(@post.user) %>
+</p>
+
+<!-- only let user who wrote the post see edit/delete buttons -->
+<% if current_user && current_user == @post.user %>
+  <hr>
+  <p>
+    <%= link_to "Edit Post", edit_post_path(@post), class: "btn btn-default" %>
+    <%= link_to "Delete Post", post_path(@post), method: :delete, class: "btn btn-default" %>
+  </p>
+<% end %>
