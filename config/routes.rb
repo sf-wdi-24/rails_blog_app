@@ -1,16 +1,21 @@
 Rails.application.routes.draw do
 
-	root to: 'users#index'
+	root to: 'posts#index'
 
-	get 'password_resets/new'
 	get '/login' => 'sessions#new'
 	post '/login' => 'sessions#create'
 	get '/logout' => 'sessions#destroy'
 	get '/signup' => 'users#new'
 	post '/users' => 'users#create'
-	delete '/users/1/edit' => 'users#destroy', :as => "destroy_user"
+	delete '/users/settings' => 'users#destroy', :as => "destroy_user"
+	delete '/posts/settings' => 'posts#destroy', :as => "destroy_post"
+	get 'users/:id/posts' => 'users#show_user_posts', :as => "show_user_posts"
+	get 'posts/:id/edit' => 'posts#edit'
+	get 'users/settings' => 'users#edit'
 
-	resources :users
+
+	resources :users, :except => [:edit]
+	resources :posts, :except => [:edit]
 	resources :sessions
 	resources :password_resets
 

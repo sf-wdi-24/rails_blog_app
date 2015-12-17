@@ -1,14 +1,14 @@
 class UsersController < ApplicationController
 
-  before_filter :authorize, except: [:new]
-  before_filter :current_user_logged_in, except: [:index, :show, :edit]
+  before_filter :authorize, except: [:new, :create]
+  before_filter :current_user_logged_in, except: [:index, :show, :edit, :show_user_posts]
 
   def index
     @users = User.all
   end
 
   def new
-    @user = User.new
+    
   end
 
   def create
@@ -24,6 +24,11 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+  end
+
+  def show_user_posts
+    @user = User.find(params[:id])
+    @posts = User.find(params[:id]).posts
   end
 
   def edit

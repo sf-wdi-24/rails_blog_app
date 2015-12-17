@@ -4,20 +4,28 @@
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- bootstrap css -->
-  <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-
   <!-- application stylesheet -->
   <%= stylesheet_link_tag :application, media: :all %>
 
   <title>RailsBlogApp</title>
 </head>
 <body>
-  <% if current_user %>
-    Signed in as <%= current_user.name %> | <%= link_to "Logout", '/logout' %>
-  <% else %>
-    <%= link_to 'Login', '/login' %> | <%= link_to 'Signup', '/signup' %>
-  <% end %>
+  <header class="navbar navbar-default">
+    <div class="navbar-class">
+      <div class="container">
+        <ul class="nav navbar-nav">
+          <% if current_user %>
+            <li><%=link_to "All Users", users_path%></li>
+            <li><%=link_to "My Profile", current_user %></li>
+            <li><%= link_to "Logout", '/logout' %></li>
+          <% else %>
+            <li><%= link_to 'Login', '/login' %></li>
+            <li><%= link_to 'Signup', '/signup' %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </header>
 
   <% flash.each do |name, msg| %>
     <div><%= msg %></div>
@@ -27,8 +35,5 @@
   
   <!-- application javascript file -->
   <%= javascript_include_tag :application %>
-
-  <!-- bootstrap js -->
-  <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 </body>
 </html>

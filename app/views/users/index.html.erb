@@ -1,4 +1,4 @@
 <h1>All Users</h1>
 <% @users.each do |user| %>
-	<%= user.email %>
+	<%= link_to user.email, "users/#{user.id}" %><br>
 <% end %>
