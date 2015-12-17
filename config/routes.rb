@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
-	root to: 'users#index'
+	root to: 'posts#index'
+	resources :posts
 	get '/users/new' => 'users#new'
 	resources :users, except: [:new]
 
