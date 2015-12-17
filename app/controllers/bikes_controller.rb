@@ -40,13 +40,14 @@ class BikesController < ApplicationController
 	end
 
 	def destroy
+		#delete bike via this CRUD route
 		bike_id = params[:id]
 
 		bike = Bike.find_by_id(bike_id)
 
 		bike.destroy
 
-		redirect_to bike_path
+		redirect_to bike_path(bike)
 	end
 
 	def create

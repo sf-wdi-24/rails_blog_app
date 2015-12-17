@@ -2,6 +2,7 @@
 	<p>
 		<strong>Name:</strong> <%= bike.name %><br>
 		<strong>Description:</strong> <%= bike.description %>
+  		<h4><%= link_to bike.name, bike_path(bike) %></a></h4>
 	</p>
 
 <% end %>
