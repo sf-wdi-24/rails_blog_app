@@ -1,0 +1,9 @@
+<h1>Create a New Blog Post!</h1>
+<hr>
+<% @posts.each do |post| %>
+<h4><%= link_to post.title, post_path(post) %></a></h4>
+<p><%= post.story %></p>
+<hr>
+<% end %>
+<%= link_to "Add New Post", new_post_path, class: "btn btn-default"%>
+
