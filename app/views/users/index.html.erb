@@ -1,0 +1,9 @@
+<h1>All Users</h1>
+<hr>
+<!-- accessing instance variable and looping through every user and printing the list on the page --> 
+<!-- the "| |" is a similar to a parameter, representing one user -->
+<% @users.each do |user| %>
+  <p><%= user.email %></p> <p><%= Time.now.strftime("%m/%d/%Y") %></p>
+  <hr>
+<% end %> 
+<%= link_to "Add New User", new_user_path, class: "btn btn-default" %>
