@@ -1,0 +1,25 @@
+<div class ="text-center">
+	<h1>Post</h1>
+	<hr>
+	<%= link_to "Create New Post", '/posts/new', class: "btn btn-success btn-md" %>
+	<br><br />
+</div>
+
+<table class="table table-striped">
+	<tr>
+		<th>Post Name</th>
+		<th>Post Description</th>
+		<th>Post Details</th>
+		<th>Edit Post</th>
+		<th>Delete</th>	
+	</tr>
+	<% @posts.each do |post| %>
+	 <tr>
+		<td><%= post.title.capitalize %></td>
+		<td><%= post.description %></td>
+	 	<td><%= link_to "Show Details", post, class: "btn-sm btn-primary"%></td>
+	 	<td><%= link_to "Edit", edit_post_path(post), class: "btn-sm btn-primary"%></td>
+	 	<td><%= link_to "Delete", post, method: :delete , class: "btn-sm btn-danger", data: {confirm: "Are you sure you want to delete post?"}%></td>
+	 </tr>
+	<% end %>
+</table>
