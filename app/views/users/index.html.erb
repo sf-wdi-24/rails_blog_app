@@ -1,0 +1,9 @@
+<h1>Ayy</h1>
+
+<h2>All users :</h2>
+<h4>Name : Email</h4>
+<% @users.each do |user| %>
+<p><%= user.name %> : <%= user.email %></p>
+<%= link_to "Update User", edit_user_path(user) %>
+<%= link_to "Delete User", user_path(user), method: :delete %>
+<% end %>
