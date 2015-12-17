@@ -9,4 +9,5 @@ class User < ActiveRecord::Base
 	validates :email, 
 						format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
 	has_secure_password
+	has_many :posts, dependent: :destroy
 end

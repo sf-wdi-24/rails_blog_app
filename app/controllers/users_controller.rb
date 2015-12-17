@@ -57,10 +57,15 @@ class UsersController < ApplicationController
 
   def destroy
     user_id = params[:id]
-    user = User.find_by_id(user_id)
-    user.destroy
-    session[:user_id] = nil
-    redirect_to users_path
+    @user = User.find_by_id(user_id)
+    if current_user == @user
+      @user.destroy
+      session[:user_id] = nil
+      redirect_to users_path
+    else
+      redirect_to users_path
+      flash[:notice] = "You cannot delete other user's accounts!"
+    end
   end
   
   private
