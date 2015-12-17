@@ -34,12 +34,41 @@ class PostsController < ApplicationController
   end
 
   def edit
+    post_id = params[:id]
+    @post = Post.find_by_id(post_id)
+    # prevent user to see other user's edit form
+    unless current_user == @post.user
+      flash[:error] = "You can't edit other user's post!"
+      redirect_to post_path(@post)
+    end
   end
 
   def update
+    # prevent user to edit other user's post
+    if current_user == @post.user
+      post_id = params[:id]
+      @post = Post.find_by_id(post_id)
+      if @post.update_attributes(post_params)
+        redirect_to post_path(@post)
+      else
+        flash[:error] = @post.errors.full_messages.join(', ')
+        redirect_to edit_path(@post)
+      end
+    else
+      redirect_to post_path(@post)
+    end
   end
 
   def destroy
+    post_id = params[:id]
+    @post = Post.find_by_id(post_id)
+    if current_user == @post.user
+      @post.destroy
+      redirect_to posts_path
+    else
+      flash[:error] = "You can't delete other user's post!"
+      redirect_to post_path(@post)
+    end
   end
 
 private
