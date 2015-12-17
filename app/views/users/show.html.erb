@@ -4,4 +4,4 @@
 <p><strong>Email:</strong> <%= @user.email %></p>
 <%= link_to "Back To List", users_path, method: :get %> | 
 <%= link_to "Edit", edit_user_path(@user) %> | 
-<%= link_to "Delete", user_path(@user) %>
+<%= link_to "Delete", user_path(@user), method: :delete %>
