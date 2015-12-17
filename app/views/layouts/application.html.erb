@@ -13,8 +13,22 @@
   <title>RailsBlogApp</title>
 </head>
 <body>
+  <div class="container">
+    <div class="navbar">
+    <a href="/">Home</a>
+    <% if current_user %>
+    <span>Welcome <%= current_user.name %> | <%= link_to "Logout", '/logout' %></span>
+    <% else %>
+      <a href="/login">Login</a>
+      <a href="/users/new">Sign Up</a>
+      <% end %>
+    </div>
+    <% flash.each do |name, message| %>
+      <p class="flash_error"><%= message %></p>
+    <% end %>  
 
-  <%= yield %>
+    <%= yield %>
+  </div>
   
   <!-- application javascript file -->
   <%= javascript_include_tag :application %>

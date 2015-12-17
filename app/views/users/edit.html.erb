@@ -1,0 +1,7 @@
+<h3>Update user information</h3>
+<%= form_for @user do |f| %>
+	<p>Email: <%= f.text_field :email %></p>
+	<p>Name: <%= f.text_field :name %></p>
+	<p>Password: <%= f.password_field :password %></p>
+	<%= f.submit "Submit" %>
+<% end %>
