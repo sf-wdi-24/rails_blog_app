@@ -48,5 +48,8 @@ group :development, :test do
   #adding ffaker for fake emails for rspec tests
   gem 'ffaker'
 
+  #adding factory girl
+  gem 'factory_girl_rails'
+
 end
 

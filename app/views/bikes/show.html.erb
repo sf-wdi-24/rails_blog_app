@@ -1,6 +1,8 @@
+<h1>This is the show page - Here is a specific bike</h1>
+
 <h2><%= @bike.name %></h2>
 <p><%= @bike.description %></p>
 <div>
 <%= link_to "Edit", edit_bike_path(@bike), class: "btn btn-primary" %>
-<%= button_to "Delete", @bike, method: :delete, class: "btn btn-primary" %>
+<%= button_to "Delete", bike_path(@bike), method: :delete, class: "btn btn-primary pull-left" %>
 </div>

@@ -17,9 +17,16 @@ RSpec.describe Bike, type: :model do
   end
 	end
 
-	 describe "#description" do
+	describe "#description" do
   	it "The bike has a description" do
   		expect(@bike.description).to eq("#{@bike.description}")
+  end
+	end
+
+	describe "#destroy redirect" do
+  	it "redirects to the / page when a bike is deleted" do
+  		expect (:destroy).to eq(bike_path)
+
   end
 	end
 end

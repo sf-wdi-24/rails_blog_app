@@ -46,6 +46,7 @@ class BikesController < ApplicationController
 		bike = Bike.find_by_id(bike_id)
 
 		bike.destroy
+		flash[:notice] = "Successfully deleted a bike."
 
 		redirect_to bike_path(bike)
 	end
