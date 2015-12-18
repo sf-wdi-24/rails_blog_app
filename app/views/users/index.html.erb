@@ -1,0 +1,8 @@
+<h1>All Users</h1>
+<hr>
+<% @users.each do |user| %>
+	<h3><strong>Name:</strong> <%= user.name %></h3>
+	<h3><strong>Email:</strong> <%= user.email %></h3>
+	<%= link_to "Display User", user_path(user), class: "btn btn-block btn-success" %>
+	<hr>
+<% end %>
