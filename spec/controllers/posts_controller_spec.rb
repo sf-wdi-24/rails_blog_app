@@ -242,6 +242,39 @@ RSpec.describe PostsController, type: :controller do
       end
     end
 
-    #still need to do when user are not logged in
+    context "delete other user's post" do
+      before do
+        @current_user = FactoryGirl.create(:user)
+        session[:user_id] = @current_user.id
+        another_user = FactoryGirl.create(:user)
+        @post = FactoryGirl.create(:post)
+        another_user.posts.push(@post)
+        delete :destroy, id: @post.id
+      end
+
+      it "should display an error message" do
+          expect(flash[:error]).to be_present
+      end
+
+      it "should redirect_to 'posts_path'" do
+        expect(response.status).to be(302)
+        expect(response).to redirect_to(post_path(@post))
+      end
+    end
+
+    context "non logged in" do
+      before do
+        @current_user = FactoryGirl.create(:user) # non logged in user
+        post = FactoryGirl.create(:post)
+        @current_user.posts.push(post)
+        delete :destroy, id: post.id
+      end
+
+      it "should redirect_to login_path" do
+        expect(response.status).to be(302)
+        expect(response).to redirect_to(login_path)
+      end
+    end
+
   end
 end

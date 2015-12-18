@@ -62,15 +62,19 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    post_id = params[:id]
-    @post = Post.find_by_id(post_id)
-    # prevent user to delete other user's post
-    if current_user == @post.user
-      @post.destroy
-      redirect_to posts_path
-    else
-      flash[:error] = "You can't delete other user's post!"
-      redirect_to post_path(@post)
+    if current_user
+      post_id = params[:id]
+      @post = Post.find_by_id(post_id)
+      # prevent user to delete other user's post
+      if current_user == @post.user
+        @post.destroy
+        redirect_to posts_path
+      else
+        flash[:error] = "You can't delete other user's post!"
+        redirect_to post_path(@post)
+      end
+    else 
+      redirect_to login_path
     end
   end
 
