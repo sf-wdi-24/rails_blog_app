@@ -23,7 +23,6 @@
 
   </div><!-- /.container-fluid -->
 </nav>
-  
 
 <div class= "container"> 
 <% if current_user %>
@@ -32,6 +31,9 @@
   <%= link_to 'Login', '/login' %> | <%= link_to 'Signup', '/signup' %>
 <% end %>
 
+<% flash.each do |name, msg| %>
+  <%= msg %>
+<% end %>
 
   <%= yield %>
 </div>  

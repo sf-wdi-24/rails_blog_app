@@ -7,9 +7,9 @@ class SessionsController < ApplicationController
 
 		if @user && user.authenticate(params[:password])
 			session[:user_id] = @user.id   
-			redirect_to user_path(@user)
-		else
 			redirect_to '/'
+		else
+			redirect_to '/signup'
 		end
 	end
 
