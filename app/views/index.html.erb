@@ -1,0 +1,9 @@
+<h1>Dave's bike blog</h1>
+<% @bikes.each do |bike| %>
+	<p>
+		<strong>Name:</strong> <%= bike.name %><br>
+		<strong>Description:</strong> <%= bike.description %>
+	</p>
+
+<% end %>
+
