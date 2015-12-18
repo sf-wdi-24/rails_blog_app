@@ -142,15 +142,21 @@ RSpec.describe UsersController, type: :controller do
 		end
 	end
 
+	describe "#destroy" do
+		before do
+			user = FactoryGirl.create(:user)
+			session[:user_id] = user.id
+			@users_count = User.count
+			delete :destroy, id: user.id
+		end
 
+		it "should remove user from the database" do
+			expect(User.count).to eq(@users_count - 1)
+		end
 
-
-
-
-
-
-
-
-
-
+		it "should redirect to root_path" do
+			expect(response.status).to be(302)
+			expect(response).to redirect_to(login_path)
+		end
+	end
 end
