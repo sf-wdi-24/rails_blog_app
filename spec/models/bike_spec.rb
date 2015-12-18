@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Bike, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
 
   before do
   bike_params = Hash.new
@@ -9,7 +8,7 @@ RSpec.describe Bike, type: :model do
   bike_params[:description] = FFaker::Lorem.word
  
   @bike = Bike.create(bike_params)
-  
+
   end
 
   describe "#name" do
