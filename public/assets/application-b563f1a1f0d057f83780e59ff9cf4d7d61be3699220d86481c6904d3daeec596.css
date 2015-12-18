@@ -10,6 +10,16 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
- *= require_self
+
+
  */
+
+body {
+	margin-top: 25px;
+	margin-left: 25px;
+	margin-right: 25px;
+}
+
+.form-group {
+	max-width: 500px;
+}
