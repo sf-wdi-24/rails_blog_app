@@ -123,7 +123,7 @@ RSpec.describe PostsController, type: :controller do
   end
 
   describe "#edit" do
-    context "logged" do
+    context "logged in" do
       context "trying edit user's own post" do
         before do
           @current_user = FactoryGirl.create(:user)
@@ -214,11 +214,52 @@ RSpec.describe PostsController, type: :controller do
           expect(response).to redirect_to(edit_post_path(@post));
         end
       end
+
+      context "edit other user post" do
+        before do
+          @current_user = FactoryGirl.create(:user)
+          session[:user_id] = @current_user.id
+          another_user = FactoryGirl.create(:user)
+          @post = FactoryGirl.create(:post)
+          another_user.posts.push(@post)
+          #edit the post
+          @new_title = FFaker::Lorem.words(5).join(" ")
+          @new_content = FFaker::Lorem.paragraph
+          put :update, id: @post.id, post: {
+            title: @new_title,
+            content: @new_content
+          }
+        end
+
+        it "should redirect_to 'post_path'" do
+          expect(response.status).to be(302)
+          expect(response).to redirect_to(post_path(@post))
+        end
+      end
     end
-    # need to do if non logged in
+
+    context "non logged in" do
+      before do
+        user = FactoryGirl.create(:user) # non logged in user
+        @post = FactoryGirl.create(:post)
+        @new_title = FFaker::Lorem.words(5).join(" ")
+        @new_content = FFaker::Lorem.paragraph
+        user.posts.push(@post)
+        #edit the post
+        put :update, id: @post.id, post: {
+          title: @new_title,
+          content: @new_content
+        }
+      end
+
+      it "should redirect_to 'posts_path'" do
+        expect(response.status).to be(302)
+        expect(response).to redirect_to(post_path(@post))
+      end
+    end
   end
 
-  describe "destroy" do 
+  describe "#destroy" do 
     context "logged in" do
       before do
         @current_user = FactoryGirl.create(:user)
