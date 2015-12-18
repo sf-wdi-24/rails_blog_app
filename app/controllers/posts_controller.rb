@@ -39,8 +39,7 @@ class PostsController < ApplicationController
     @post = Post.find_by_id(post_id)
     # prevent user to see other user's edit form
     unless current_user == @post.user
-      flash[:error] = "You can't edit other user's post!"
-      redirect_to post_path(@post)
+      redirect_to login_path
     end
   end
 
@@ -55,7 +54,7 @@ class PostsController < ApplicationController
         redirect_to post_path(@post)
       else
         flash[:error] = @post.errors.full_messages.join(', ')
-        redirect_to edit_path(@post)
+        redirect_to edit_post_path(@post)
       end
     else
       redirect_to post_path(@post)
