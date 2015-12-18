@@ -92,5 +92,65 @@ RSpec.describe UsersController, type: :controller do
 		end
 	end
 
+	describe "#edit" do
+		before do
+			@user = FactoryGirl.create(:user)
+			session[:user_id] = @user.id
+			get :edit, id: @user.id
+		end
+
+		it "should assign @product" do
+			expect(assigns(:product)).to eq(@product)
+		end
+
+		it "should render the :edit view" do
+			expect(response).to render_template(:edit)
+		end
+	end
+
+	describe "#update" do
+		before do
+			@user = FactoryGirl.create(:user)
+			session[:user_id] = @user.id
+		end
+
+		context "success" do
+			before do
+				@new_password = FFaker::Internet.password
+				@new_name = FFaker::Name.first_name
+				@new_email = FFaker::Internet.email
+
+				post :update, id: @user.id, user: {
+					name: @new_name,
+			    email: @new_email,
+			    password: @new_password,
+			    password_confirmation: @new_password
+				}
+				# reload @user to get changes from :update
+				@user.reload
+			end
+
+			it "should update user in the database" do
+				expect(@user.name).to eq(@new_name)
+				expect(@user.email).to eq(@new_email)
+			end
+
+			it "should redirect to user" do
+				expect(response.status).to be(302)
+				expect(response).to redirect_to(user_path(@user))
+			end
+		end
+	end
+
+
+
+
+
+
+
+
+
+
+
 
 end
