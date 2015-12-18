@@ -13,9 +13,31 @@
   <title>RailsBlogApp</title>
 </head>
 <body>
+  
+  <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">Posts</a>
+    </div>
+
+  </div><!-- /.container-fluid -->
+</nav>
+
+<div class= "container"> 
+<% if current_user %>
+  Signed in as <%= current_user.name %> |  <%= link_to "Logout", '/logout' %>
+<% else %>
+  <%= link_to 'Login', '/login' %> | <%= link_to 'Signup', '/signup' %>
+<% end %>
+
+<% flash.each do |name, msg| %>
+  <%= msg %>
+<% end %>
 
   <%= yield %>
-  
+</div>  
+
   <!-- application javascript file -->
   <%= javascript_include_tag :application %>
 
