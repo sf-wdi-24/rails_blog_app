@@ -8,7 +8,7 @@ class PostsController < ApplicationController
   def new
     # prevent non logged in user to see new post form
     if current_user
-      @post = Post.new()
+      @post = Post.new
     else
       redirect_to login_path
     end
@@ -45,6 +45,8 @@ class PostsController < ApplicationController
   end
 
   def update
+    post_id = params[:id]
+    @post = Post.find_by_id(post_id)
     # prevent user to edit other user's post
     if current_user == @post.user
       post_id = params[:id]
