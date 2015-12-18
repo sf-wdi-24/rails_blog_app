@@ -1,0 +1,12 @@
+<h1 class="text-center">Meet Our Members</h1>
+<hr>
+<div class="row">
+	<% @users.each do |user| %>
+		<div class="col-sm-8">
+  		<p class="username-index"><%= user.name.titleize %></p>
+		</div>
+		<div class="col-sm-4">
+			<%= link_to "View Profile",user_path(user), method: :get %>
+		</div>
+	<% end %>
+</div>
