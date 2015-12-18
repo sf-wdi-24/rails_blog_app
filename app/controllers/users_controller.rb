@@ -15,12 +15,12 @@ class UsersController < ApplicationController
     if current_user
       redirect_to user_path(current_user)
     else
-      @user = User.new(user_params)
-      if @user.save
-        session[:user_id] = @user.id
-        redirect_to user_path(@user)
+      user = User.new(user_params)
+      if user.save
+        session[:user_id] = user.id
+        redirect_to user_path(user)
       else
-        flash[:error] = @user.errors.full_messages.join(', ')
+        flash[:error] = user.errors.full_messages.join(', ')
         redirect_to new_user_path
       end
     end
@@ -42,13 +42,13 @@ class UsersController < ApplicationController
 
   def update
     user_id = params[:id]
-    @user = User.find_by_id(user_id)
-    if current_user == @user
-      if @user.update_attributes(user_params)
-        redirect_to user_path(@user)
+    user = User.find_by_id(user_id)
+    if current_user == user
+      if user.update_attributes(user_params)
+        redirect_to user_path(user)
       else
-        flash[:error] = @user.errors.full_messages.join(', ')
-        redirect_to edit_user_path(@user)
+        flash[:error] = user.errors.full_messages.join(', ')
+        redirect_to edit_user_path(user)
       end
     else
       redirect_to user_path(current_user)
@@ -57,9 +57,9 @@ class UsersController < ApplicationController
 
   def destroy
     user_id = params[:id]
-    @user = User.find_by_id(user_id)
-    if current_user == @user
-      @user.destroy
+    user = User.find_by_id(user_id)
+    if current_user == user
+      user.destroy
       session[:user_id] = nil
       redirect_to users_path
     else
