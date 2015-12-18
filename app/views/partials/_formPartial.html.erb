@@ -1,0 +1,12 @@
+<%= form_for @post, html: {multipart: true} do |f| %>
+  <div class="row">
+    <div class="large-12">
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+      <%= f.label :body %>
+      <%= f.text_area :body %>
+      <%= f.file_field :image %>
+      <%= f.submit "Submit", class:"button expanded small" %>
+    </div>
+  </div>
+<% end %>

@@ -1,25 +1,21 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <%= csrf_meta_tags %>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+    <title><%= content_for?(:title) ? yield(:title) : "rails-blog-lab" %></title>
 
-  <!-- bootstrap css -->
-  <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "vendor/modernizr" %>
+    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
 
-  <!-- application stylesheet -->
-  <%= stylesheet_link_tag :application, media: :all %>
+  <body>
+    <%= render 'partials/navPartial' %>
+    <%= render 'partials/flashMsg' %>
+    <%= yield %>
 
-  <title>RailsBlogApp</title>
-</head>
-<body>
-
-  <%= yield %>
-  
-  <!-- application javascript file -->
-  <%= javascript_include_tag :application %>
-
-  <!-- bootstrap js -->
-  <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-</body>
+  </body>
 </html>
