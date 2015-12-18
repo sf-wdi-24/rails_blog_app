@@ -1,9 +1,9 @@
 class PostsController < ApplicationController
 
-  before_filter :authorize
+  #before_filter :authorize
 
   def index
-    @posts = User.find(current_user.id).posts
+    @posts = Post.where(user_id: current_user.id)
   end
 
   def new
@@ -13,7 +13,6 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    puts "current_user: #{current_user.id}"
     if @post.save
       redirect_to posts_path
     else
