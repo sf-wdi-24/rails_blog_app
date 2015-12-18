@@ -5,12 +5,12 @@ class PostsController < ApplicationController
   end
 
   def new
-    if current_user
+    @post = Post.new
+    # if current_user
       render :new
-    else
-      retirect_to login_path
-    end
-
+    # else
+    #   retirect_to login_path
+    # end
   end
 
   def create
