@@ -13,8 +13,33 @@
   <title>RailsBlogApp</title>
 </head>
 <body>
+  <div class="container">
+    <div class="navbar">
+    <ul class="nav nav-pills nav-justified">
+      <li><a href="/">Home</a></li>
+      <% if current_user %>
+      <li><%= link_to "Profile", posts_path(@user) %></li>
+      <li><%= link_to "Logout", '/logout' %></li>
+      <% else %>
+        <li><a href="/login">Login</a></li>
+        <li><a href="/users/new">Sign Up</a></li>
+      </ul>
+        <% end %>
+        <% if current_user %>
+      <h4>Hello <%= current_user.name %></h4>
+      <% else %>
+      <h4>Hello Guest</h4>
+      <% end %>
+      </div>
+      <ul>
+      <% flash.each do |name, message| %>
+        <li><p class="flash_error"><%= message %></p></li>
+      <% end %>  
+    </ul>
+    
 
-  <%= yield %>
+    <%= yield %>
+  </div>
   
   <!-- application javascript file -->
   <%= javascript_include_tag :application %>

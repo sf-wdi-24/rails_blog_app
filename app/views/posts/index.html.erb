@@ -1,0 +1,13 @@
+<h2 class="text-center">Yay Dinosaurs</h2>
+<h3 class="text-center">Rawr!!</h3>
+<%= link_to "New Post", new_post_path %>
+<hr>
+<% @posts.each do |post| %>
+	<h3><%= post.title %></h3>	
+	<h3><%= post.content %></h3>
+	<small>posted by: <%= post.user.name %> <%= time_ago_in_words(post.created_at) %> ago</small>
+	<br>
+	<%= link_to "Edit Post", edit_post_path(post) %>
+	<%= link_to "Remove Post", post_path(post), method: :delete %>
+	<hr>
+	<% end %>

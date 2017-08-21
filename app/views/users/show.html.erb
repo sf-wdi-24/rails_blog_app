@@ -1,0 +1,13 @@
+<h1>Welcome <%= @user.name %></h1>
+	<p><strong>Name:</strong> <%= @user.name %></p>	
+	<p><strong>Email:</strong> <%= @user.email %></p>
+	<%= link_to "Edit Profile", edit_user_path(current_user), class: "btn btn-danger" %>
+	<%= link_to "Delete Profile", user_path(@user), method: :delete, class: "btn btn-danger" %>
+	<br><hr>
+	<% if current_user.posts.any? %>
+	<% current_user.each do |post| %>
+	<h3><%= current_user.post.title %></h3>	
+	<h3><%= current_user.post.content %></h3>
+	<% end %>
+	<% end %>
+	
